@@ -19,6 +19,9 @@ export default function HeaderNew() {
           >
             Directory
           </Link>
+          <Link href="/character" className={styles["header-new__nav-link"]}>
+            Characters
+          </Link>
           <a href="#" className={styles["header-new__nav-link"]}>
             Teams
           </a>

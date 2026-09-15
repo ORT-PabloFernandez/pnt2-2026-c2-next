@@ -1,25 +1,31 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
-async function getCharacters() {
-  const res = await fetch("https://rickandmortyapi.com/api/character", {
-    // Refrescar cada 60s en el server (opcional)
-    next: { revalidate: 60 },
-  });
+export default function CharacterSearch({ characters }) {
+  const [query, setQuery] = useState("");
 
-  if (!res.ok) {
-    throw new Error("No se pudieron obtener los personajes");
-  }
-
-  return res.json();
-}
-
-export default async function HomePage() {
-  const data = await getCharacters();
-  const characters = data.results;
+  const filtered = characters.filter((c) =>
+    c.name.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
-    <section style={{ maxWidth: 1100, margin: "0 auto", padding: 24 }}>
-      <h1 style={{ marginBottom: 16 }}>Personajes</h1>
+    <>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Buscar personaje por nombre..."
+        style={{
+          width: "100%",
+          padding: "10px 14px",
+          marginBottom: 16,
+          border: "1px solid #e2e8f0",
+          borderRadius: 8,
+          fontSize: 14,
+        }}
+      />
 
       <ul
         style={{
@@ -30,7 +36,7 @@ export default async function HomePage() {
           gap: 16,
         }}
       >
-        {characters.map((c) => (
+        {filtered.map((c) => (
           <li
             key={c.id}
             style={{
@@ -56,7 +62,12 @@ export default async function HomePage() {
           </li>
         ))}
       </ul>
-    </section>
+
+      {filtered.length === 0 && (
+        <p style={{ color: "#64748b", marginTop: 16 }}>
+          No se encontraron personajes con ese nombre.
+        </p>
+      )}
+    </>
   );
 }
-

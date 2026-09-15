@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import HeaderNew from "./components/HeaderNew";
+import FooterNew from "./components/FooterNew";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +28,9 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..2" />
       </head>
       <body className="min-h-full flex flex-col">
-        {children}
+        <HeaderNew />
+          <main style={{flex: 1}}>  {children} </main>
+        <FooterNew />
       </body>
     </html>
   );
