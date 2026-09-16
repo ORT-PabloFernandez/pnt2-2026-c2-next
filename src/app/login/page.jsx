@@ -37,8 +37,6 @@ export default function LoginPage() {
         // TODO: redireccion al home"
         console.log('Inicio de sesión exitoso', data.token);
         router.push('/'); // redirecciona al home
-
-
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         setError('Error al iniciar sesión');
