@@ -1,61 +1,8 @@
-import Link from "next/link";
-
-async function getCharacters() {
-  const res = await fetch("https://rickandmortyapi.com/api/character", {
-    // Refrescar cada 60s en el server (opcional)
-    next: { revalidate: 60 },
-  });
-
-  if (!res.ok) {
-    throw new Error("No se pudieron obtener los personajes");
-  }
-
-  return res.json();
-}
-
-export default async function HomePage() {
-  const data = await getCharacters();
-  const characters = data.results;
-
+export default function HomePage() {
   return (
-    <section style={{ maxWidth: 1100, margin: "0 auto", padding: 24 }}>
-      <h1 style={{ marginBottom: 16 }}>Personajes</h1>
-
-      <ul
-        style={{
-          listStyle: "none",
-          padding: 0,
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-          gap: 16,
-        }}
-      >
-        {characters.map((c) => (
-          <li
-            key={c.id}
-            style={{
-              background: "#fff",
-              border: "1px solid #e2e8f0",
-              borderRadius: 12,
-              overflow: "hidden",
-            }}
-          >
-            <Link href={`/character/${c.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-              <img
-                src={c.image}
-                alt={c.name}
-                style={{ width: "100%", display: "block" }}
-              />
-              <div style={{ padding: 12 }}>
-                <h3 style={{ margin: "0 0 4px" }}>{c.name}</h3>
-                <small style={{ color: "#64748b" }}>
-                  {c.species} · {c.status}
-                </small>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <section style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
+      <h1>Bienvenido a HubConnect</h1>
+      <p>Nos alegra tenerte de vuelta.</p>
     </section>
   );
 }

@@ -4,6 +4,15 @@
   padding: 24px;
 }
 
+.section h1 {
+  margin: 0 0 8px;
+}
+
+.intro {
+  margin: 0 0 20px;
+  color: #64748b;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -40,20 +49,38 @@
   cursor: pointer;
 }
 
+.boton:hover:not(:disabled) {
+  background: #1a3ac4;
+}
+
+.boton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.input:focus {
+  outline: 2px solid rgba(43, 75, 238, 0.2);
+  border-color: #2b4bee;
+}
+
 .fieldWrapper {
   margin-bottom: 12px;
 }
 
 .error {
-  color: red;
+  color: #b91c1c;
   margin-top: 12px;
 }
 
 .success {
-  color: green;
+  color: #15803d;
   margin-top: 12px;
 }
 
 .footer {
   margin-top: 12px;
+}
+
+.footer a {
+  color: #2b4bee;
 }
